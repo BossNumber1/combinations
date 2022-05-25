@@ -1,0 +1,27 @@
+{
+  "name": "combinations",
+  "version": "1.0.0",
+  "description": "telegram bot to find matching colors",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BossNumber1/combinations.git"
+  },
+  "keywords": [],
+  "author": "Dmitry Ustinov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BossNumber1/combinations/issues"
+  },
+  "homepage": "https://github.com/BossNumber1/combinations#readme",
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0"
+  }
+}
