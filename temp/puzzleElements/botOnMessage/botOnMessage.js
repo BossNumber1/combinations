@@ -9,16 +9,11 @@ module.exports = (bot, receivingSticker) => {
                 "https://cdn.tlgrm.ru/stickers/c62/4a8/c624a88d-1fe3-403a-b41a-3cdb9bf05b8a/256/4.webp"
             );
 
-            return bot.sendMessage(chatId, `Приветствую`);
+            return bot.sendMessage(chatId, `Поищем сочетание цветов?`);
         }
 
-        if (text === "/info") {
-            return bot.sendMessage(
-                chatId,
-                `Что тебя интересует ${
-                    msg.from.first_name ? msg.from.first_name : ""
-                } ${msg.from.last_name ? msg.from.last_name : ""}?`
-            );
+        if (text === "/search") {
+            return bot.sendMessage(chatId, `Введите первый цвет`);
         }
 
         return bot.sendMessage(

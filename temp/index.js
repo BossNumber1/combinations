@@ -7,7 +7,7 @@ const bot = new TelegramApi(token, { polling: true });
 
 const start = () => {
     bot.setMyCommands([
-        { command: "/info", description: "Получить информацию" },
+        { command: "/search", description: "Искать сочетание" },
     ]);
 
     async function receivingSticker(chatId, pathToSticker) {
