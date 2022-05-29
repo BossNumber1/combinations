@@ -1,3 +1,5 @@
+const { analysis } = require("../../../analysis");
+
 module.exports = (bot, receivingSticker) => {
     bot.on("message", async (msg) => {
         const text = msg.text;
@@ -10,15 +12,20 @@ module.exports = (bot, receivingSticker) => {
             );
 
             return bot.sendMessage(chatId, `Поищем сочетание цветов?`);
-        }
-
-        if (text === "/search") {
+        } else if (text === "/search") {
             return bot.sendMessage(chatId, `Введите первый цвет`);
-        }
+        } else {
+            // получаем цвет
+            const firstColor = text;
 
-        return bot.sendMessage(
-            chatId,
-            "Я тебя не понимаю. Со мной можно общаться лишь командами :)"
-        );
+            //подставляем в анализ
+            let result = analysis(firstColor, "розовый");
+
+            if (result === true) {
+                return bot.sendMessage(chatId, `Сочетаются`);
+            } else {
+                return bot.sendMessage(chatId, `Не сочетаются`);
+            }
+        }
     });
 };
