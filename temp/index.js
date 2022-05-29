@@ -1,5 +1,7 @@
 const onMessageBot = require("./puzzleElements/botOnMessage/botOnMessage");
 const TelegramApi = require("node-telegram-bot-api");
+const { gameOptions, againOptions } = require("./options");
+const onCallback_queryBot = require("./puzzleElements/botOnCallback_query/botOnCallback_query");
 
 require("dotenv").config();
 const token = process.env.token;
@@ -14,7 +16,8 @@ const start = () => {
         return bot.sendSticker(chatId, pathToSticker);
     }
 
-    onMessageBot(bot, receivingSticker);
+    onMessageBot(bot, receivingSticker, gameOptions);
+    onCallback_queryBot(bot, receivingSticker, againOptions);
 };
 
 start();
