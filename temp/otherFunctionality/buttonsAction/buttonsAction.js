@@ -6,7 +6,7 @@ let selectedColors = {
     secondColor: "",
 };
 
-module.exports = (bot, receivingSticker, againOptions, startSearch) => {
+module.exports = (bot, receivingSticker, againBtn, startSearch) => {
     bot.on("callback_query", async (msg) => {
         const buttonValue = msg.data;
         const chatId = msg.message.chat.id;
@@ -52,7 +52,7 @@ module.exports = (bot, receivingSticker, againOptions, startSearch) => {
                         id +
                         ".webp"
                 ).then(() => {
-                    return bot.sendMessage(chatId, answer, againOptions);
+                    return bot.sendMessage(chatId, answer, againBtn);
                 });
             }
         }

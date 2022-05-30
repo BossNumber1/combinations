@@ -1,7 +1,10 @@
-const commands = require("./otherFunctionality/commands/commands");
-const TelegramApi = require("node-telegram-bot-api");
-const { gameOptions, againOptions } = require("./options");
 const buttonsAction = require("./otherFunctionality/buttonsAction/buttonsAction");
+const commands = require("./otherFunctionality/commands/commands");
+const {
+    keyboardColors,
+    againBtn,
+} = require("./otherFunctionality/keyboards/keyboards");
+const TelegramApi = require("node-telegram-bot-api");
 
 require("dotenv").config();
 const token = process.env.token;
@@ -12,7 +15,7 @@ const startSearch = (chatId) => {
     return bot.sendMessage(
         chatId,
         `Выберите два цвета для сравнения`,
-        gameOptions
+        keyboardColors
     );
 };
 
@@ -26,7 +29,7 @@ const start = () => {
     }
 
     commands(bot, receivingSticker, startSearch);
-    buttonsAction(bot, receivingSticker, againOptions, startSearch);
+    buttonsAction(bot, receivingSticker, againBtn, startSearch);
 };
 
 start();
