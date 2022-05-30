@@ -7,14 +7,13 @@ require("dotenv").config();
 const token = process.env.token;
 const bot = new TelegramApi(token, { polling: true });
 
-const startSearch = async (chatId, pathToSticker) => {
-    async function receivingSticker(chatId, pathToSticker) {
-        return bot.sendSticker(chatId, pathToSticker);
-    }
-
-    onMessageBot(bot, receivingSticker, gameOptions);
-
-    //await bot.sendMessage(chatId, gameOptions);
+const startSearch = (chatId) => {
+    // ДУБЛИРУЕМАЯ функция запуска сравнения
+    return bot.sendMessage(
+        chatId,
+        `Выберите два цвета для сравнения`,
+        gameOptions
+    );
 };
 
 const start = () => {
@@ -26,14 +25,8 @@ const start = () => {
         return bot.sendSticker(chatId, pathToSticker);
     }
 
-    onMessageBot(bot, receivingSticker, gameOptions);
-    onCallback_queryBot(
-        bot,
-        receivingSticker,
-        againOptions,
-        startSearch,
-        gameOptions
-    );
+    onMessageBot(bot, receivingSticker, startSearch);
+    onCallback_queryBot(bot, receivingSticker, againOptions, startSearch);
 };
 
 start();

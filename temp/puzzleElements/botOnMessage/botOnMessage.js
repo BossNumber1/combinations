@@ -1,4 +1,4 @@
-module.exports = (bot, receivingSticker, gameOptions) => {
+module.exports = (bot, receivingSticker, startSearch) => {
     bot.on("message", async (msg) => {
         const text = msg.text;
         const chatId = msg.chat.id;
@@ -13,11 +13,8 @@ module.exports = (bot, receivingSticker, gameOptions) => {
         }
 
         if (text === "/search") {
-            return bot.sendMessage(
-                chatId,
-                `Выберите два цвета для сравнения`,
-                gameOptions
-            );
+            startSearch(chatId);
+            return true;
         }
 
         return bot.sendMessage(

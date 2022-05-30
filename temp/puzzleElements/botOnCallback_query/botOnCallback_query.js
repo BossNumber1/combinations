@@ -1,5 +1,4 @@
 const { analysis } = require("../../../analysis");
-const onMessageBot = require("../botOnMessage/botOnMessage");
 
 // для хранения выбранных цветов
 let colorsDB = {
@@ -7,13 +6,7 @@ let colorsDB = {
     secondColor: "",
 };
 
-module.exports = (
-    bot,
-    receivingSticker,
-    againOptions,
-    startSearch,
-    gameOptions
-) => {
+module.exports = (bot, receivingSticker, againOptions, startSearch) => {
     bot.on("callback_query", async (msg) => {
         const data = msg.data;
         const chatId = msg.message.chat.id;
@@ -23,19 +16,13 @@ module.exports = (
             colorsDB.firstColor = "";
             colorsDB.secondColor = "";
 
-            // onMessageBot(bot, receivingSticker, gameOptions);
-            return bot.sendMessage(
-                chatId,
-                `Выберите два цвета для сравнения`,
-                gameOptions
-            );
-            //return bot.sendMessage(chatId, gameOptions);
-            //return startSearch(chatId);
+            startSearch(chatId);
         }
 
         // сохраняем цвета
         if (
             data !== "check" &&
+            data !== "again" &&
             (!colorsDB.firstColor || !colorsDB.secondColor)
         ) {
             if (!colorsDB.firstColor) {
