@@ -1,10 +1,4 @@
-// база данных на совместимость
-const matchingColors = [
-    {
-        basic: "Красный",
-        additional: "Розовый",
-    },
-];
+const matchingColors = require("../database/matchingColors");
 
 function analysis(firstColor, secondColor) {
     // проверка на совместимость

@@ -10,8 +10,9 @@ require("dotenv").config();
 const token = process.env.token;
 const bot = new TelegramApi(token, { polling: true });
 
+// common functions
 const startSearch = (chatId) => {
-    // ДУБЛИРУЕМАЯ функция запуска сравнения
+    // сравнивает цвета
     return bot.sendMessage(
         chatId,
         `Выберите два цвета для сравнения`,
@@ -19,14 +20,15 @@ const startSearch = (chatId) => {
     );
 };
 
+async function receivingSticker(chatId, pathToSticker) {
+    return bot.sendSticker(chatId, pathToSticker);
+}
+
+// остальное
 const start = () => {
     bot.setMyCommands([
         { command: "/search", description: "Искать сочетание" },
     ]);
-
-    async function receivingSticker(chatId, pathToSticker) {
-        return bot.sendSticker(chatId, pathToSticker);
-    }
 
     commands(bot, receivingSticker, startSearch);
     buttonsAction(bot, receivingSticker, againBtn, startSearch);
