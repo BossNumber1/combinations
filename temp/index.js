@@ -1,7 +1,7 @@
-const commands = require("./puzzleElements/commands/commands");
+const commands = require("./otherFunctionality/commands/commands");
 const TelegramApi = require("node-telegram-bot-api");
 const { gameOptions, againOptions } = require("./options");
-const onCallback_queryBot = require("./puzzleElements/botOnCallback_query/botOnCallback_query");
+const buttonsAction = require("./otherFunctionality/buttonsAction/buttonsAction");
 
 require("dotenv").config();
 const token = process.env.token;
@@ -26,7 +26,7 @@ const start = () => {
     }
 
     commands(bot, receivingSticker, startSearch);
-    onCallback_queryBot(bot, receivingSticker, againOptions, startSearch);
+    buttonsAction(bot, receivingSticker, againOptions, startSearch);
 };
 
 start();
