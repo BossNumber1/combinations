@@ -3,14 +3,14 @@ module.exports = {
         reply_markup: JSON.stringify({
             inline_keyboard: [
                 [
-                    { text: "красный", callback_data: "красный" },
-                    { text: "розовый", callback_data: "розовый" },
+                    { text: "Красный", callback_data: "Красный" },
+                    { text: "Розовый", callback_data: "Розовый" },
                 ],
                 [
-                    { text: "желтый", callback_data: "желтый" },
-                    { text: "синий", callback_data: "синий" },
+                    { text: "Жёлтый", callback_data: "Жёлтый" },
+                    { text: "Синий", callback_data: "Синий" },
                 ],
-                [{ text: "проверить", callback_data: "check" }],
+                [{ text: "Проверить", callback_data: "check" }],
             ],
         }),
     },

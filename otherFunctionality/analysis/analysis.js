@@ -1,8 +1,8 @@
 // база данных на совместимость
 const matchingColors = [
     {
-        basic: "красный",
-        additional: "розовый",
+        basic: "Красный",
+        additional: "Розовый",
     },
 ];
 

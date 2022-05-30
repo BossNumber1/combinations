@@ -1,4 +1,4 @@
-const { analysis } = require("../../../analysis");
+const { analysis } = require("../analysis/analysis");
 
 // для хранения выбранных цветов
 let selectedColors = {

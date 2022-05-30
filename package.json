@@ -7,19 +7,26 @@
     "test": "test"
   },
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "mocha"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BossNumber1/combinations.git"
   },
-  "keywords": [],
+  "keywords": ["telegram bot"],
   "author": "Dmitry Ustinov",
-  "license": "ISC",
+  "license": "",
   "bugs": {
     "url": "https://github.com/BossNumber1/combinations/issues"
   },
   "homepage": "https://github.com/BossNumber1/combinations#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "node-telegram-bot-api": "^0.53.0",
+    "nodemon": "^2.0.7"
+  },
   "devDependencies": {
     "chai": "^4.3.6",
     "mocha": "^10.0.0"
