@@ -6,6 +6,10 @@ module.exports = {
                     { text: "красный", callback_data: "красный" },
                     { text: "розовый", callback_data: "розовый" },
                 ],
+                [
+                    { text: "желтый", callback_data: "желтый" },
+                    { text: "синий", callback_data: "синий" },
+                ],
                 [{ text: "проверить", callback_data: "check" }],
             ],
         }),
@@ -14,7 +18,7 @@ module.exports = {
     againOptions: {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{ text: "Играть ещё раз", callback_data: "/again" }],
+                [{ text: "Попробовать ещё раз", callback_data: "again" }],
             ],
         }),
     },

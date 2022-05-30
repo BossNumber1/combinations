@@ -7,6 +7,16 @@ require("dotenv").config();
 const token = process.env.token;
 const bot = new TelegramApi(token, { polling: true });
 
+const startSearch = async (chatId, pathToSticker) => {
+    async function receivingSticker(chatId, pathToSticker) {
+        return bot.sendSticker(chatId, pathToSticker);
+    }
+
+    onMessageBot(bot, receivingSticker, gameOptions);
+
+    //await bot.sendMessage(chatId, gameOptions);
+};
+
 const start = () => {
     bot.setMyCommands([
         { command: "/search", description: "Искать сочетание" },
@@ -17,7 +27,13 @@ const start = () => {
     }
 
     onMessageBot(bot, receivingSticker, gameOptions);
-    onCallback_queryBot(bot, receivingSticker, againOptions);
+    onCallback_queryBot(
+        bot,
+        receivingSticker,
+        againOptions,
+        startSearch,
+        gameOptions
+    );
 };
 
 start();
