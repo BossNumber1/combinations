@@ -1,6 +1,7 @@
 const { Telegraf, Markup } = require("telegraf");
 const { analysis } = require("./core/analysis/analysis");
 const text = require("./core/consts/consts");
+const selectColors = require("./core/common/selectColors");
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
@@ -9,23 +10,6 @@ let selectedColors = {
     firstColor: "",
     secondColor: "",
 };
-
-// common functions
-function selectColors(ctx, introduction) {
-    return ctx.replyWithHTML(
-        introduction,
-        Markup.inlineKeyboard([
-            [
-                Markup.button.callback("Красный", "Красный"),
-                Markup.button.callback("Розовый", "Розовый"),
-            ],
-            [
-                Markup.button.callback("Жёлтый", "Жёлтый"),
-                Markup.button.callback("Синий", "Синий"),
-            ],
-        ])
-    );
-}
 
 bot.start(async (ctx) => {
     try {
