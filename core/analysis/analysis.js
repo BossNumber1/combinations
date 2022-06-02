@@ -1,4 +1,4 @@
-const matchingColors = require("./matchingColors");
+const matchingColors = require("../db/matchingColors");
 
 function analysis(firstColor, secondColor) {
     // проверка на совместимость
