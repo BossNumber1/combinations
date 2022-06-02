@@ -4,6 +4,7 @@ const text = require("./core/consts/consts");
 const selectColors = require("./core/common/selectColors");
 const sendStic = require("./core/common/sendStic");
 const sendKeyboard = require("./core/common/sendKeyboard");
+const hideClock = require("./core/common/hideClock");
 
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -33,8 +34,7 @@ bot.action("Начать", async (ctx) => {
         ctx.deleteMessage(message_id - 1);
         ctx.deleteMessage(message_id - 2);
 
-        // убираем часы на кнопке
-        await ctx.answerCbQuery();
+        await hideClock(ctx);
         await selectColors(ctx, `Необходимо выбрать <b>два</b> цвета`);
     } catch (e) {
         console.error(e);
@@ -45,8 +45,7 @@ bot.action("Начать", async (ctx) => {
 function addActionBot(buttonValue, text) {
     bot.action(buttonValue, async (ctx) => {
         try {
-            // убираем часы на кнопке
-            await ctx.answerCbQuery();
+            await hideClock(ctx);
 
             // отправляем текст и сохраняем цвета
             if (!selectedColors.firstColor || !selectedColors.secondColor) {
@@ -98,13 +97,8 @@ bot.action("Проверить", async (ctx) => {
         ctx.deleteMessage(message_id - 1);
         ctx.deleteMessage(message_id - 2);
 
-        // убираем часы на кнопке
-        await ctx.answerCbQuery();
-
-        // отправляем стикер
+        await hideClock(ctx);
         await sendStic(ctx, srcId);
-
-        // отправляем текст
         await sendKeyboard(
             ctx,
             `${
@@ -129,8 +123,7 @@ bot.action("Повторить", async (ctx) => {
         ctx.deleteMessage(message_id);
         ctx.deleteMessage(message_id - 1);
 
-        // убираем часы на кнопке
-        await ctx.answerCbQuery();
+        await hideClock(ctx);
         await selectColors(ctx, `Выбираем снова <b>два</b> цвета`);
     } catch (e) {
         console.error(e);
