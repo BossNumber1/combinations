@@ -1,6 +1,6 @@
 const { Markup } = require("telegraf");
 
-module.exports = (ctx, introduction, btnValue) => {
+module.exports = (ctx, introduction: string, btnValue: string) => {
     if (btnValue) {
         return ctx.replyWithHTML(
             introduction,
