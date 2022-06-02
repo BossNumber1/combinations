@@ -80,21 +80,25 @@ addActionBot("Синий", `Вы выбрали <b>${text.blue}</b>`);
 // анализируем
 bot.action("Проверить", async (ctx) => {
     try {
-        // наполняем - нужными - данными
         let srcId, answer;
 
-        let result = analysis(
-            selectedColors.firstColor,
-            selectedColors.secondColor
-        );
+        function comparison() {
+            // сравниваем цвета
+            let result = analysis(
+                selectedColors.firstColor,
+                selectedColors.secondColor
+            );
 
-        if (result === true) {
-            srcId = 1;
-            answer = text.combined;
-        } else {
-            srcId = 47;
-            answer = text.noCombined;
+            if (result === true) {
+                srcId = 1;
+                answer = text.combined;
+            } else {
+                srcId = 47;
+                answer = text.noCombined;
+            }
         }
+
+        comparison();
 
         // стираем прежние сообщения
         let message_id = ctx.update.callback_query.message.message_id;
