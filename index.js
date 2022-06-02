@@ -41,32 +41,41 @@ bot.action("Начать", async (ctx) => {
     }
 });
 
-// отправляем выбор и сохраняем цвета
-function addActionBot(buttonValue, text) {
-    bot.action(buttonValue, async (ctx) => {
-        try {
-            await hideClock(ctx);
+function buttonClickHandler() {
+    // показываем выбор и сохраняем цвета
+    function core(buttonValue, text) {
+        bot.action(buttonValue, async (ctx) => {
+            try {
+                await hideClock(ctx);
 
-            // отправляем текст и сохраняем цвета
-            if (!selectedColors.firstColor || !selectedColors.secondColor) {
-                if (!selectedColors.firstColor) {
-                    selectedColors.firstColor = buttonValue;
-                    await sendKeyboard(ctx, text);
-                } else {
-                    selectedColors.secondColor = buttonValue;
-                    await sendKeyboard(ctx, text, "Проверить");
+                // отправляем текст и сохраняем цвета
+                if (!selectedColors.firstColor || !selectedColors.secondColor) {
+                    if (!selectedColors.firstColor) {
+                        selectedColors.firstColor = buttonValue;
+                        await sendKeyboard(ctx, text);
+                    } else {
+                        selectedColors.secondColor = buttonValue;
+                        await sendKeyboard(ctx, text, "Проверить");
+                    }
                 }
+            } catch (e) {
+                console.error(e);
             }
-        } catch (e) {
-            console.error(e);
-        }
-    });
+        });
+    }
+
+    // вешаем на каждую кнопку цвета
+    const btnsList = [
+        { btnValue: "Красный", answer: `Вы выбрали <b>${text.red}</b>` },
+        { btnValue: "Розовый", answer: `Вы выбрали <b>${text.pink}</b>` },
+        { btnValue: "Жёлтый", answer: `Вы выбрали <b>${text.yellow}</b>` },
+        { btnValue: "Синий", answer: `Вы выбрали <b>${text.blue}</b>` },
+    ];
+
+    btnsList.map((el) => core(el.btnValue, el.answer));
 }
 
-addActionBot("Красный", `Вы выбрали <b>${text.red}</b>`);
-addActionBot("Розовый", `Вы выбрали <b>${text.pink}</b>`);
-addActionBot("Жёлтый", `Вы выбрали <b>${text.yellow}</b>`);
-addActionBot("Синий", `Вы выбрали <b>${text.blue}</b>`);
+buttonClickHandler();
 
 // анализируем
 bot.action("Проверить", async (ctx) => {
