@@ -5,6 +5,7 @@ const selectColors = require("./core/common/selectColors");
 const sendStic = require("./core/common/sendStic");
 const sendKeyboard = require("./core/common/sendKeyboard");
 const hideClock = require("./core/common/hideClock");
+const deleteMessages = require("./core/common/deleteMessages");
 
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -28,12 +29,7 @@ bot.start(async (ctx) => {
 
 bot.action("Начать", async (ctx) => {
     try {
-        // стираем прежние сообщения
-        let message_id = ctx.update.callback_query.message.message_id;
-        ctx.deleteMessage(message_id);
-        ctx.deleteMessage(message_id - 1);
-        ctx.deleteMessage(message_id - 2);
-
+        deleteMessages(ctx, 3);
         await hideClock(ctx);
         await selectColors(ctx, `Необходимо выбрать <b>два</b> цвета`);
     } catch (e) {
@@ -100,12 +96,7 @@ bot.action("Проверить", async (ctx) => {
 
         comparison();
 
-        // стираем прежние сообщения
-        let message_id = ctx.update.callback_query.message.message_id;
-        ctx.deleteMessage(message_id);
-        ctx.deleteMessage(message_id - 1);
-        ctx.deleteMessage(message_id - 2);
-
+        deleteMessages(ctx, 3);
         await hideClock(ctx);
         await sendStic(ctx, srcId);
         await sendKeyboard(
@@ -127,11 +118,7 @@ bot.action("Повторить", async (ctx) => {
         selectedColors.firstColor = "";
         selectedColors.secondColor = "";
 
-        // стираем прежние сообщения
-        let message_id = ctx.update.callback_query.message.message_id;
-        ctx.deleteMessage(message_id);
-        ctx.deleteMessage(message_id - 1);
-
+        deleteMessages(ctx, 2);
         await hideClock(ctx);
         await selectColors(ctx, `Выбираем снова <b>два</b> цвета`);
     } catch (e) {
