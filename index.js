@@ -1,8 +1,10 @@
-const { Telegraf, Markup } = require("telegraf");
+const { Telegraf } = require("telegraf");
 const { analysis } = require("./core/analysis/analysis");
 const text = require("./core/consts/consts");
 const selectColors = require("./core/common/selectColors");
 const sendStic = require("./core/common/sendStic");
+const sendKeyboard = require("./core/common/sendKeyboard");
+
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
@@ -17,12 +19,7 @@ let selectedColors = {
 bot.start(async (ctx) => {
     try {
         await sendStic(ctx, 4);
-        await ctx.reply(
-            "Поищем сочетание цветов?",
-            Markup.inlineKeyboard([
-                [Markup.button.callback("Начать", "Начать")],
-            ])
-        );
+        await sendKeyboard(ctx, "Поищем сочетание цветов?", "Начать");
     } catch (e) {
         console.error(e);
     }
@@ -55,15 +52,10 @@ function addActionBot(buttonValue, text) {
             if (!selectedColors.firstColor || !selectedColors.secondColor) {
                 if (!selectedColors.firstColor) {
                     selectedColors.firstColor = buttonValue;
-                    await ctx.replyWithHTML(text);
+                    await sendKeyboard(ctx, text);
                 } else {
                     selectedColors.secondColor = buttonValue;
-                    await ctx.replyWithHTML(
-                        text,
-                        Markup.inlineKeyboard([
-                            [Markup.button.callback("Проверить", "Проверить")],
-                        ])
-                    );
+                    await sendKeyboard(ctx, text, "Проверить");
                 }
             }
         } catch (e) {
@@ -113,13 +105,12 @@ bot.action("Проверить", async (ctx) => {
         await sendStic(ctx, srcId);
 
         // отправляем текст
-        await ctx.replyWithHTML(
+        await sendKeyboard(
+            ctx,
             `${
                 selectedColors.firstColor
             } и ${selectedColors.secondColor.toLowerCase()} <b>${answer}</b>`,
-            Markup.inlineKeyboard([
-                [Markup.button.callback("Повторить", "Повторить")],
-            ])
+            "Повторить"
         );
     } catch (e) {
         console.error(e);
