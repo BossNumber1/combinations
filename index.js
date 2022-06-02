@@ -106,9 +106,7 @@ bot.action("Проверить", async (ctx) => {
         await ctx.answerCbQuery();
 
         // отправляем стикер
-        if (srcId !== false) {
-            await sendStic(ctx, srcId);
-        }
+        await sendStic(ctx, srcId);
 
         // отправляем текст
         await ctx.replyWithHTML(
