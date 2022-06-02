@@ -6,7 +6,7 @@ const sendKeyboard = require("./core/common/sendKeyboard");
 const hideClock = require("./core/common/hideClock");
 const deleteMessages = require("./core/common/deleteMessages");
 const selectedColors = require("./core/db/selectedColors");
-const searchStart = require("./core/common/searchStart");
+const searchStart = require("./core/common/combined/searchStart");
 
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
