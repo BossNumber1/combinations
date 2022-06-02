@@ -45,16 +45,11 @@ bot.action("Начать", async (ctx) => {
 });
 
 // отправляем выбор и сохраняем цвета
-function addActionBot(buttonValue, srcId, text) {
+function addActionBot(buttonValue, text) {
     bot.action(buttonValue, async (ctx) => {
         try {
             // убираем часы на кнопке
             await ctx.answerCbQuery();
-
-            // отправляем стикер
-            if (srcId !== false) {
-                await sendStic(ctx, srcId);
-            }
 
             // отправляем текст и сохраняем цвета
             if (!selectedColors.firstColor || !selectedColors.secondColor) {
@@ -77,10 +72,10 @@ function addActionBot(buttonValue, srcId, text) {
     });
 }
 
-addActionBot("Красный", false, `Вы выбрали <b>${text.red}</b>`);
-addActionBot("Розовый", false, `Вы выбрали <b>${text.pink}</b>`);
-addActionBot("Жёлтый", false, `Вы выбрали <b>${text.yellow}</b>`);
-addActionBot("Синий", false, `Вы выбрали <b>${text.blue}</b>`);
+addActionBot("Красный", `Вы выбрали <b>${text.red}</b>`);
+addActionBot("Розовый", `Вы выбрали <b>${text.pink}</b>`);
+addActionBot("Жёлтый", `Вы выбрали <b>${text.yellow}</b>`);
+addActionBot("Синий", `Вы выбрали <b>${text.blue}</b>`);
 
 // анализируем
 bot.action("Проверить", async (ctx) => {
