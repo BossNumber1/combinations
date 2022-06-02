@@ -6,15 +6,10 @@ const sendStic = require("./core/common/sendStic");
 const sendKeyboard = require("./core/common/sendKeyboard");
 const hideClock = require("./core/common/hideClock");
 const deleteMessages = require("./core/common/deleteMessages");
+const selectedColors = require("./core/db/selectedColors");
 
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
-
-// для хранения выбранных цветов
-let selectedColors = {
-    firstColor: "",
-    secondColor: "",
-};
 
 // common fncts
 
