@@ -7,11 +7,11 @@ const btnCheck = require("./core/logicalBlocks/btnCheck");
 const btnRepeat = require("./core/logicalBlocks/btnRepeat");
 const btnsColors = require("./core/logicalBlocks/btnsColors");
 
-botStart(bot);
-btnStart(bot);
+botStart(bot); // при запуске
+btnStart(bot); // начинаем
 btnCheck(bot); // анализируем
-btnRepeat(bot); // начинаем заново
-btnsColors(bot); // показываем выбор и сохраняем цвета
+btnsColors(bot); // сохраняем цвета и показываем выбор
+btnRepeat(bot); // по новой
 
 bot.launch();
 
