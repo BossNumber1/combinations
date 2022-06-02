@@ -2,6 +2,7 @@ const { Telegraf, Markup } = require("telegraf");
 const { analysis } = require("./core/analysis/analysis");
 const text = require("./core/consts/consts");
 const selectColors = require("./core/common/selectColors");
+const sendStic = require("./core/common/sendStic");
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
@@ -11,11 +12,11 @@ let selectedColors = {
     secondColor: "",
 };
 
+// common fncts
+
 bot.start(async (ctx) => {
     try {
-        await ctx.replyWithSticker(
-            "https://cdn.tlgrm.ru/stickers/c62/4a8/c624a88d-1fe3-403a-b41a-3cdb9bf05b8a/256/4.webp"
-        );
+        await sendStic(ctx, 4);
         await ctx.reply(
             "Поищем сочетание цветов?",
             Markup.inlineKeyboard([
@@ -52,11 +53,7 @@ function addActionBot(buttonValue, srcId, text) {
 
             // отправляем стикер
             if (srcId !== false) {
-                await ctx.replyWithSticker(
-                    "https://cdn.tlgrm.ru/stickers/c62/4a8/c624a88d-1fe3-403a-b41a-3cdb9bf05b8a/256/" +
-                        srcId +
-                        ".webp"
-                );
+                await sendStic(ctx, srcId);
             }
 
             // отправляем текст и сохраняем цвета
@@ -115,11 +112,7 @@ bot.action("Проверить", async (ctx) => {
 
         // отправляем стикер
         if (srcId !== false) {
-            await ctx.replyWithSticker(
-                "https://cdn.tlgrm.ru/stickers/c62/4a8/c624a88d-1fe3-403a-b41a-3cdb9bf05b8a/256/" +
-                    srcId +
-                    ".webp"
-            );
+            await sendStic(ctx, srcId);
         }
 
         // отправляем текст
