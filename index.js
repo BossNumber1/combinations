@@ -1,12 +1,12 @@
 const { Telegraf } = require("telegraf");
 const { analysis } = require("./core/analysis/analysis");
 const text = require("./core/consts/consts");
-const sendStic = require("./core/common/sendStic");
 const sendKeyboard = require("./core/common/sendKeyboard");
 const hideClock = require("./core/common/hideClock");
 const deleteMessages = require("./core/common/deleteMessages");
 const selectedColors = require("./core/db/selectedColors");
 const searchStart = require("./core/common/combined/searchStart");
+const sendKeyboardStick = require("./core/common/combined/sendKeyboardStick");
 
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -15,8 +15,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 bot.start(async (ctx) => {
     try {
-        await sendStic(ctx, 4);
-        await sendKeyboard(ctx, "Поищем сочетание цветов?", "Начать");
+        sendKeyboardStick(ctx, 4, "Поищем сочетание цветов?", "Начать");
     } catch (e) {
         console.error(e);
     }
@@ -70,6 +69,7 @@ buttonClickHandler();
 bot.action("Проверить", async (ctx) => {
     try {
         let srcId, answer;
+        await hideClock(ctx);
 
         function comparison() {
             // сравниваем цвета
@@ -88,12 +88,10 @@ bot.action("Проверить", async (ctx) => {
         }
 
         comparison();
-
         deleteMessages(ctx, 3);
-        await hideClock(ctx);
-        await sendStic(ctx, srcId);
-        await sendKeyboard(
+        sendKeyboardStick(
             ctx,
+            srcId,
             `${
                 selectedColors.firstColor
             } и ${selectedColors.secondColor.toLowerCase()} <b>${answer}</b>`,
