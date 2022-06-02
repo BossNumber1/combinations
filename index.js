@@ -1,12 +1,12 @@
 const { Telegraf } = require("telegraf");
 const { analysis } = require("./core/analysis/analysis");
 const text = require("./core/consts/consts");
-const selectColors = require("./core/common/selectColors");
 const sendStic = require("./core/common/sendStic");
 const sendKeyboard = require("./core/common/sendKeyboard");
 const hideClock = require("./core/common/hideClock");
 const deleteMessages = require("./core/common/deleteMessages");
 const selectedColors = require("./core/db/selectedColors");
+const searchStart = require("./core/common/searchStart");
 
 require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
@@ -24,9 +24,7 @@ bot.start(async (ctx) => {
 
 bot.action("Начать", async (ctx) => {
     try {
-        deleteMessages(ctx, 3);
-        await hideClock(ctx);
-        await selectColors(ctx, `Необходимо выбрать <b>два</b> цвета`);
+        searchStart(ctx, 3, `Необходимо выбрать <b>два</b> цвета`);
     } catch (e) {
         console.error(e);
     }
@@ -113,9 +111,7 @@ bot.action("Повторить", async (ctx) => {
         selectedColors.firstColor = "";
         selectedColors.secondColor = "";
 
-        deleteMessages(ctx, 2);
-        await hideClock(ctx);
-        await selectColors(ctx, `Выбираем снова <b>два</b> цвета`);
+        searchStart(ctx, 2, `Выбираем снова <b>два</b> цвета`);
     } catch (e) {
         console.error(e);
     }
