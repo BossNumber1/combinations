@@ -1,8 +1,9 @@
 import { UserCtx } from './../../types/theirTypes';
 import searchStart from "../common/combined/searchStart";
 import selectedColors from "../db/selectedColors";
+import { Telegraf } from 'telegraf';
 
-export default (bot: any) => {
+export default (bot: Telegraf) => {
     bot.action("Повторить", async (ctx: UserCtx) => {
         try {
             // обнуляем пару

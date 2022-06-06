@@ -4,9 +4,10 @@ import sendKeyboardStick from "../common/combined/sendKeyboardStick";
 import deleteMessages from "../common/deleteMessages";
 import hideClock from "../common/hideClock";
 import selectedColors from "../db/selectedColors";
+import { Telegraf } from 'telegraf';
 const consts = require("../consts/consts");
 
-export default (bot: any) => {
+export default (bot: Telegraf) => {
     bot.action("Проверить", async (ctx: UserCtx) => {
         try {
             let srcId: number, answer: string;

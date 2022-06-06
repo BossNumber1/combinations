@@ -1,7 +1,7 @@
-import { Context } from "telegraf";
+import { Context, Telegraf } from "telegraf";
 import sendKeyboardStick from "../common/combined/sendKeyboardStick";
 
-export default (bot: any) => {
+export default (bot: Telegraf) => {
     bot.start(async (ctx: Context) => {
         try {
             sendKeyboardStick(ctx, 4, "Поищем сочетание цветов?", "Начать");

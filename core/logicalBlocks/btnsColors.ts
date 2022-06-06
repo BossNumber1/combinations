@@ -1,10 +1,10 @@
-import { Context } from 'telegraf';
+import { Context, Telegraf } from 'telegraf';
 const consts = require("../consts/consts");
 import hideClock from "../common/hideClock";
 import sendKeyboard from "../common/sendKeyboard";
 import selectedColors from "../db/selectedColors";
 
-export default (bot: any) => {
+export default (bot: Telegraf) => {
     function core(buttonValue: string, answer: string) {
         bot.action(buttonValue, async (ctx: Context) => {
             try {
