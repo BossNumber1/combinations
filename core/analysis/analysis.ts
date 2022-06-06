@@ -1,6 +1,6 @@
 import matchingColors from "../db/matchingColors";
 
-export function analysis(firstColor: string, secondColor: string) {
+export function analysis(firstColor: string, secondColor: string): boolean {
     // проверка на совместимость
     for (let i = 0; i < matchingColors.length; i++) {
         if (

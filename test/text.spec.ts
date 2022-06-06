@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const { analysis } = require("../analysis");
+import {analysis} from "../core/analysis/analysis";
 
 describe("COMBINATION", () => {
     it("сочетаются ли цвета", () => {
