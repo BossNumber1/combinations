@@ -2,8 +2,7 @@ require("dotenv").config();
 import { Telegraf } from "telegraf";
 import manager from "./core/logicalBlocks/manager/manager"
 
-const bot = new Telegraf("5209986614:AAEev0ndm5IKxrjVIcPKmjKwPyjm_JhpuDc");
-// const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.launch();
 
 manager(bot); // весь нужный код
