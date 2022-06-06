@@ -29,6 +29,7 @@
     "telegraf": "^4.8.3"
   },
   "devDependencies": {
+    "typescript": "^4.7.3",
     "chai": "^4.3.6",
     "mocha": "^10.0.0",
     "@types/mocha": "^9.1.1",
