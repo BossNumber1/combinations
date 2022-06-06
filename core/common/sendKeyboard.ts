@@ -1,7 +1,7 @@
-const { Markup } = require("telegraf");
+import { Markup, Context } from "telegraf";
 
-module.exports = (ctx, introduction: string, btnValue: string) => {
-    if (btnValue) {
+export default (ctx: Context, introduction: string, btnValue: string) => {
+    if (btnValue !== "") {
         return ctx.replyWithHTML(
             introduction,
             Markup.inlineKeyboard([

@@ -1,7 +1,8 @@
-const sendKeyboardStick = require("../common/combined/sendKeyboardStick");
+import { Context } from "telegraf";
+import sendKeyboardStick from "../common/combined/sendKeyboardStick";
 
-module.exports = (bot) => {
-    bot.start(async (ctx) => {
+export default (bot: any) => {
+    bot.start(async (ctx: Context) => {
         try {
             sendKeyboardStick(ctx, 4, "Поищем сочетание цветов?", "Начать");
         } catch (e) {

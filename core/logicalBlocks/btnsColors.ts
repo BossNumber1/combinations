@@ -1,11 +1,12 @@
+import { Context } from 'telegraf';
 const consts = require("../consts/consts");
-const hideClock = require("../common/hideClock");
-const sendKeyboard = require("../common/sendKeyboard");
-const selectedColors = require("../db/selectedColors");
+import hideClock from "../common/hideClock";
+import sendKeyboard from "../common/sendKeyboard";
+import selectedColors from "../db/selectedColors";
 
-module.exports = (bot) => {
-    function core(buttonValue, answer) {
-        bot.action(buttonValue, async (ctx) => {
+export default (bot: any) => {
+    function core(buttonValue: string, answer: string) {
+        bot.action(buttonValue, async (ctx: Context) => {
             try {
                 await hideClock(ctx);
 
@@ -13,7 +14,7 @@ module.exports = (bot) => {
                 if (!selectedColors.firstColor || !selectedColors.secondColor) {
                     if (!selectedColors.firstColor) {
                         selectedColors.firstColor = buttonValue;
-                        await sendKeyboard(ctx, answer);
+                        await sendKeyboard(ctx, answer, "");
                     } else {
                         selectedColors.secondColor = buttonValue;
                         await sendKeyboard(ctx, answer, "Проверить");

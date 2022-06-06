@@ -1,6 +1,6 @@
-const { Markup } = require("telegraf");
+import { Markup, Context } from "telegraf";
 
-module.exports = (ctx, introduction: string) => {
+export default (ctx: Context, introduction: string) => {
     return ctx.replyWithHTML(
         introduction,
         Markup.inlineKeyboard([

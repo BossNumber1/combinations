@@ -1,10 +1,10 @@
-const botStart = require("../botStart");
-const btnCheck = require("../btnCheck");
-const btnRepeat = require("../btnRepeat");
-const btnsColors = require("../btnsColors");
-const btnStart = require("../btnStart");
+import botStart from "../botStart";
+import btnCheck from "../btnCheck";
+import btnRepeat from "../btnRepeat";
+import btnsColors from "../btnsColors";
+import btnStart from "../btnStart";
 
-module.exports = (bot) => {
+export default (bot: Object) => {
     botStart(bot); // при запуске
     btnStart(bot); // начинаем
     btnCheck(bot); // анализируем

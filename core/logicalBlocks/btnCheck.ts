@@ -1,19 +1,20 @@
-const { analysis } = require("../analysis/analysis");
-const sendKeyboardStick = require("../common/combined/sendKeyboardStick");
-const deleteMessages = require("../common/deleteMessages");
-const hideClock = require("../common/hideClock");
-const selectedColors = require("../db/selectedColors");
+import { UserCtx } from './../../types/theirTypes';
+import { analysis } from "../analysis/analysis";
+import sendKeyboardStick from "../common/combined/sendKeyboardStick";
+import deleteMessages from "../common/deleteMessages";
+import hideClock from "../common/hideClock";
+import selectedColors from "../db/selectedColors";
 const consts = require("../consts/consts");
 
-module.exports = (bot) => {
-    bot.action("Проверить", async (ctx) => {
+export default (bot: any) => {
+    bot.action("Проверить", async (ctx: UserCtx) => {
         try {
-            let srcId, answer;
+            let srcId: number, answer: string;
             await hideClock(ctx);
 
             function comparison() {
                 // сравниваем цвета
-                let result = analysis(
+                let result: boolean = analysis(
                     selectedColors.firstColor,
                     selectedColors.secondColor
                 );

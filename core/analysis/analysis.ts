@@ -1,6 +1,6 @@
-const matchingColors = require("../db/matchingColors");
+import matchingColors from "../db/matchingColors";
 
-function analysis(firstColor: string, secondColor: string) {
+export function analysis(firstColor: string, secondColor: string) {
     // проверка на совместимость
     for (let i = 0; i < matchingColors.length; i++) {
         if (
@@ -15,5 +15,3 @@ function analysis(firstColor: string, secondColor: string) {
         }
     }
 }
-
-module.exports = { analysis };

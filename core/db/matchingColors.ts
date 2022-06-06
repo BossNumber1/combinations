@@ -1,5 +1,5 @@
 // БД на цветовую совместимость
-module.exports = [
+export default [
     {
         basic: "Красный",
         additional: "Розовый",

@@ -1,5 +1,5 @@
 // для хранения выбранных цветов
-module.exports = {
+export default {
     firstColor: "",
     secondColor: "",
 };

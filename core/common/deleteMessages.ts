@@ -1,4 +1,6 @@
-module.exports = (ctx, numberMessages: number) => {
+import { UserCtx } from './../../types/theirTypes';
+
+export default (ctx: UserCtx, numberMessages: number) => {
     // стираем прежние сообщения
     let message_id = ctx.update.callback_query.message.message_id;
 

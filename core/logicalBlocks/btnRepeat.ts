@@ -1,8 +1,9 @@
-const searchStart = require("../common/combined/searchStart");
-const selectedColors = require("../db/selectedColors");
+import { UserCtx } from './../../types/theirTypes';
+import searchStart from "../common/combined/searchStart";
+import selectedColors from "../db/selectedColors";
 
-module.exports = (bot) => {
-    bot.action("Повторить", async (ctx) => {
+export default (bot: any) => {
+    bot.action("Повторить", async (ctx: UserCtx) => {
         try {
             // обнуляем пару
             selectedColors.firstColor = "";
