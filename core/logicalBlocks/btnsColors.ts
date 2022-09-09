@@ -1,5 +1,5 @@
 import { Context, Telegraf } from 'telegraf';
-const consts = require("../consts/consts");
+import * as consts from '../consts/consts';
 import hideClock from "../common/hideClock";
 import sendKeyboard from "../common/sendKeyboard";
 import selectedColors from "../db/selectedColors";
