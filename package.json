@@ -2,12 +2,12 @@
   "name": "combinations",
   "version": "1.0.0",
   "description": "telegram bot to find matching colors",
-  "main": "index.js",
+  "main": "index.ts",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "ts-node-esm index.ts",
     "dev": "nodemon --watch '*.ts' --exec \"ts-node\" index.ts",
     "test": "mocha"
   },
