@@ -1,6 +1,6 @@
-module.exports.blue = `синий`;
-module.exports.red = `красный`;
-module.exports.pink = `розовый`;
-module.exports.yellow = `жёлтый`;
-module.exports.combined = `сочетаются`;
-module.exports.noCombined = `не сочетаются`;
+export const blue = `синий`;
+export const red = `красный`;
+export const pink = `розовый`;
+export const yellow = `жёлтый`;
+export const combined = `сочетаются`;
+export const noCombined = `не сочетаются`;

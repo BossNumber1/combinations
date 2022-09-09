@@ -5,7 +5,7 @@ import deleteMessages from "../common/deleteMessages";
 import hideClock from "../common/hideClock";
 import selectedColors from "../db/selectedColors";
 import { Telegraf } from 'telegraf';
-const consts = require("../consts/consts");
+import * as consts from '../consts/consts';
 
 export default (bot: Telegraf) => {
     bot.action("Проверить", async (ctx: UserCtx) => {
